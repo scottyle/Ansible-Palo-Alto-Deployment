@@ -13,11 +13,11 @@ ansible_user=admin
 ansible_network_os=ios
 ansible_connection=network_cli
 
-[firewals:children]
+[firewalls:children]
 paloalto
 
-[paloalto]
+[palo]
 
-fw1 ansible_hosts=172.24.112.8
-fw2 ansible_hosts=172.24.112.9
+PA-fw1 ansible_hosts=172.18.0.8
+PA-fw2 ansible_hosts=172.18.0.9
 

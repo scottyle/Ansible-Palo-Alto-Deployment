@@ -1,0 +1,18 @@
+---
+- name: Palo Alto Provision 
+  hosts: PA-fw1
+  connection: local
+ 
+  collections:
+    - paloaltonetworks.panos
+
+  tasks:
+    - name: Set hostname 
+      panos_mgtconfig:
+        provider: 
+          username: admin
+          password: admin
+          ip_address: 172.18.0.8
+        hostname: "{{ inventory_hostname }}"
+
+

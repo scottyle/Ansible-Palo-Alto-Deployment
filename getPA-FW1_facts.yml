@@ -1,6 +1,6 @@
 ---
 - name: Palo Alto Provision 
-  hosts: paloalto
+  hosts: palo
   connection: local
  
   collections:
@@ -12,11 +12,15 @@
         provider: 
           username: admin
           password: admin
-          ip_address: 172.24.112.8, 172.24.112.9
+          ip_address: 172.18.0.8
     
     - name: Display hostname 
       debug:  
         msg: "Hostname: {{ansible_net_hostname}}"
+
+    - name: Display Serial number of the local node 
+      debug: 
+        msg: "Serial number of local node {{ansible_net_serial }}"
 
     - name: Display model, PAN-OS version
       debug:
@@ -29,6 +33,10 @@
     - name: Is High availablity enabled? 
       debug:  
         msg: "High availablity: {{ansible_net_ha_enabled}}"
+    
+    - name: Display number of active sessions firewall
+      debug: 
+        msg: "Current active sessions: {{ansible_net_session_usage}}"
       
 
 
