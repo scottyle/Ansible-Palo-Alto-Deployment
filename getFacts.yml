@@ -1,5 +1,5 @@
 ---
-- name: Palo Alto Provision 
+- name: Grab Palo Alto facts
   hosts: palo
   connection: local
  

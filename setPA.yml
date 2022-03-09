@@ -1,5 +1,5 @@
 ---
-- name: Palo Alto Provision 
+- name: Set Palo alto configurations
   hosts: palo
   connection: local
  
@@ -10,6 +10,7 @@
       ip_address: '{{ ip_address }}'
       username: ' {{ username }} '
       password: ' {{ password }} '
+
   tasks:
     - name: Set hostname, dns servers, NTP servers, panorama primary/secondary 
       panos_mgtconfig:
