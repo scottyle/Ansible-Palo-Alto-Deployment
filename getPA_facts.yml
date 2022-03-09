@@ -1,0 +1,36 @@
+---
+- name: Palo Alto Provision 
+  hosts: paloalto
+  connection: local
+ 
+  collections:
+    - paloaltonetworks.panos
+
+  tasks:
+    - name: Get facts
+      panos_facts:
+        provider: 
+          username: admin
+          password: admin
+          ip_address: 172.24.112.8, 172.24.112.9
+    
+    - name: Display hostname 
+      debug:  
+        msg: "Hostname: {{ansible_net_hostname}}"
+
+    - name: Display model, PAN-OS version
+      debug:
+        msg: "Model: {{ ansible_facts['net_model'] }}, version: {{ ansible_facts['net_version'] }}"
+
+    - name: Display firewall up time 
+      debug:  
+        msg: "Up time: {{ansible_net_uptime}}"
+    
+    - name: Is High availablity enabled? 
+      debug:  
+        msg: "High availablity: {{ansible_net_ha_enabled}}"
+      
+
+
+
+

@@ -1,0 +1,23 @@
+[all:vars]
+ansible_user=admin
+ansible_password=admin
+
+[routers:children]
+cisco
+
+[cisco]
+router1 ansible_host=172.24.112.7
+
+[cisco:vars]
+ansible_user=admin
+ansible_network_os=ios
+ansible_connection=network_cli
+
+[firewals:children]
+paloalto
+
+[paloalto]
+
+fw1 ansible_hosts=172.24.112.8
+fw2 ansible_hosts=172.24.112.9
+
