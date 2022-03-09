@@ -14,10 +14,9 @@ ansible_network_os=ios
 ansible_connection=network_cli
 
 [firewalls:children]
-paloalto
+palo
 
 [palo]
 
-PA-fw1 ansible_hosts=172.18.0.8
-PA-fw2 ansible_hosts=172.18.0.9
-
+PA-fw1 ansible_hosts=172.18.0.8 
+PA-fw2 ansible_hosts=172.18.0.9 

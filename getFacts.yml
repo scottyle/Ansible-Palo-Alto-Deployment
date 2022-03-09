@@ -5,14 +5,17 @@
  
   collections:
     - paloaltonetworks.panos
+  
+  vars:
+    device:
+      ip_address: '{{ ip_address }}'
+      username: '{{ username }}'
+      password: '{{ password }}'
 
   tasks:
     - name: Get facts
       panos_facts:
-        provider: 
-          username: admin
-          password: admin
-          ip_address: 172.18.0.8
+        provider: '{{device}}'
     
     - name: Display hostname 
       debug:  
@@ -37,8 +40,3 @@
     - name: Display number of active sessions firewall
       debug: 
         msg: "Current active sessions: {{ansible_net_session_usage}}"
-      
-
-
-
-
