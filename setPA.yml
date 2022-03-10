@@ -1,10 +1,13 @@
+#Playbook used to set configurations on both firewalls
 ---
 - name: Set Palo alto configurations
   hosts: palo
+#palo is the group variable which houses both fws 
   connection: local
- 
+# panos collections 
   collections:
     - paloaltonetworks.panos
+# variables used to pass to the provider module, will pull the values of these inside the host_vars folder 
   vars:
     device:
       ip_address: '{{ ip_address }}'
@@ -15,6 +18,7 @@
     - name: Set hostname, dns servers, NTP servers, panorama primary/secondary 
       panos_mgtconfig:
         provider: '{{ device }} '
+# inventory_hostname will set the hostname to the variable specified inside the inventory file. 
         hostname: "{{ inventory_hostname }}"
         dns_server_primary: "1.1.1.1"
         dns_server_secondary: "1.1.1.2"
@@ -22,6 +26,9 @@
         panorama_secondary: "1.1.1.4"
         ntp_server_primary: "1.1.1.5"
         ntp_server_secondary: "1.1.1.6"
+
+#Zones must be configured first but creating the policy because the policy references zones, if zones aren't created policy will return an error
+#Tasks are made to create the internal and external zones 
 
     - name: Configure internal zone
       panos_zone:
@@ -35,6 +42,7 @@
         zone: 'external'
         mode: 'layer3'
 
+#Task is to allow access for https access from source 172.18.0.1 to any destination
     - name: Set https policy on firewall
       panos_security_rule:
         provider: '{{ device }} '
@@ -50,7 +58,7 @@
         service: ['service-https']
         hip_profiles: ['any']
         action: 'allow'      
-
+# This task is used to commit the changes onto the firewall, alternatively I believe you can commit the changes yourself or have the changes be returned before commiting
     - name: Commit config on firewall 
       panos_commit:
         provider: '{{ device }} '

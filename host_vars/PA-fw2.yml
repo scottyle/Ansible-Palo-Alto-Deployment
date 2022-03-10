@@ -1,2 +1,7 @@
+#YML file for FW1 that includes the variables needed to be provided to provider for PAN-OS connectivity
+#Instead of username / password we could provide a API key as well 
+
 ---
 ip_address: '172.18.0.9'
+username: admin
+password: admin

@@ -1,0 +1,23 @@
+#Playbook used to grab quick facts about the router in the network
+#Playbook displays the hostname, serial #,  model #, OS, and the management interface
+---
+  - name: Gather information about Cisco Router 
+    hosts: router1
+
+    tasks:  
+      - name: Display hostname 
+        debug:  
+          msg: "Hostname: {{ansible_net_hostname}}"
+
+      - name: Display serial number and model number
+        debug:
+          msg: "Serial number of device: {{ansible_net_serialnum}}, Model number: {{ansible_net_model}}"
+
+      - name: Display Operating system
+        debug:  
+          msg: "Operating system: {{ansible_net_version}} "
+
+      - name: Display Management Interface 
+        debug:  
+          msg: "GigabitEthernet1: IP address: {{ansible_net_interfaces.GigabitEthernet1.ipv4[0].address}}, Subnet mask: /{{ ansible_net_interfaces.GigabitEthernet1.ipv4[0].subnet}}"
+      

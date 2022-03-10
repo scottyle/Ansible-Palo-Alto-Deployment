@@ -1,3 +1,5 @@
+#Playbook to grab facts from the FW, it will gather facts related to the hostname, serial #, model, PAN-OS version, firewall uptime, HA and the number
+# of active sessions
 ---
 - name: Grab Palo Alto facts
   hosts: palo
@@ -5,12 +7,15 @@
  
   collections:
     - paloaltonetworks.panos
-  
+
+#Refer to setPA.yml comments for explaination 
   vars:
     device:
       ip_address: '{{ ip_address }}'
       username: '{{ username }}'
       password: '{{ password }}'
+
+#Using these tasks we grab facts about the FWs to quickly create an audit report
 
   tasks:
     - name: Get facts

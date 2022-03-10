@@ -1,0 +1,32 @@
+#This playbook is used to configure cisco router used on the topology
+#Playbook covers basic modules because our focus was on the firewalls
+---
+  - name: Set Cisco configurations
+    hosts: router1
+
+    tasks:
+    #This task is used to set the host name for the router using the inventory name inside the inventory file
+      - name: set hostname
+        cisco.ios.ios_hostname:
+          config:
+            hostname: "{{ inventory_hostname }}"
+          state: merged
+    
+    #Task is used to set the login banner
+      - name: Set login banner
+        cisco.ios.ios_banner:
+          banner: login
+          text: |
+            S144 - Lab 2 Ansible 
+            Cisco Router 
+          state: present
+  
+    #Task is used to set the NTP server to google 8.8.8.8
+      - name: Set NTP
+        cisco.ios.ios_ntp:
+          server: 8.8.8.8
+          logging: false
+          state: present
+
+
+

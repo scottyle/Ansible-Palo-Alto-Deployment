@@ -1,3 +1,6 @@
+#Inventory file that includes our cisco router, and two PA fws 
+#Inventory allows for expansion, routers is the parent group to cisco and cisco group contains the router1 host
+#Palo parent group houses all the PA FWs used in this topology
 [all:vars]
 ansible_user=admin
 ansible_password=admin
@@ -6,7 +9,7 @@ ansible_password=admin
 cisco
 
 [cisco]
-router1 ansible_host=172.24.112.7
+router1 ansible_host=172.18.0.7
 
 [cisco:vars]
 ansible_user=admin
