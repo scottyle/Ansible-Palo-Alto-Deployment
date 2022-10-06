@@ -1,4 +1,4 @@
-<h1># Lab2-Ansible </h1>
+<h1># Ansible-Palo-Alto-Lab </h1>
 This repo is used to configure 2 Palo alto firewalls. Both firewalls will then connect to a core router. 
 The repo will contain Ansible playbooks that will grab facts about the topology to create a audit report very quickly, this repo will also contain playbooks that are used to configure the PA firewalls. 
 This repo will contain the diagram of the network, playbooks, descriptions of the playbooks and how the network is deployed. 
